@@ -10,8 +10,8 @@ def test_del_project(app):
         app.project.add_project(project)
         old_projects = app.project.get_project_list()
     app.project.delete_first_project()
+    project = random.choice(old_projects)
     new_projects = app.project.get_project_list()
     old_projects.remove(project)
     app.session.logout()
-    assert len(old_projects) == len(new_projects)
     assert old_projects == new_projects

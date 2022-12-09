@@ -26,23 +26,13 @@ class ProjectHelper:
             wd.find_element_by_link_text("Manage").click()
             wd.find_element_by_link_text("Manage Projects").click()
 
+
     def delete_first_project(self):
-        self.delete_project_by_index(0)
-
-    def delete_project_by_index(self, index):
         wd = self.app.wd
-        self.return_to_projects_page()
-        wd.find_elements_by_css_selector('[href="manage_proj_edit_page"]')[index].click()
+        wd.find_element_by_xpath("/html/body/table[3]/tbody/tr[3]/td[1]/a").click()
         wd.find_element_by_css_selector('[value="Delete Project"]').click()
         wd.find_element_by_css_selector('[value="Delete Project"]').click()
 
-    def delete_group_by_id(self, id):
-        wd = self.app.wd
-        wd.find_element_by_link_text("groups").click()
-        self.select_group_by_id(id)
-        # submit deletion
-        wd.find_element_by_name("delete").click()
-        self.group_cache = None
 
     def fill_project_form(self, project):
         wd = self.app.wd
@@ -67,13 +57,6 @@ class ProjectHelper:
         wd.find_element_by_css_selector('[value="Delete Project"]').click()
         wd.find_element_by_css_selector('[value="Delete Project"]').click()
 
-    def select_group_by_index(self, index):
-        wd = self.app.wd
-        wd.find_elements_by_name("selected[]")[index].click()
-
-    def select_group_by_id(self, id):
-        wd = self.app.wd
-        wd.find_element_by_css_selector("input[value='%s']" % id).click()
 
 
     def count(self):
@@ -87,7 +70,7 @@ class ProjectHelper:
         if self.project_cache is None:
             wd = self.app.wd
             self.open_projects_page()
-            self.project_cache = []
+            self.project_list = []
             index = 0
             for element in wd.find_elements_by_xpath("//table[3]/tbody/tr")[2:]:
                 text = element.find_elements_by_tag_name("td")
@@ -95,6 +78,6 @@ class ProjectHelper:
                 status = text[1].text
                 view_status = text[3].text
                 description = text[4].text
-                self.project_cache.append(Project(name=name, status=status, view_status=view_status, description=description, index=index))
+                self.project_list.append(Project(name=name, status=status, view_status=view_status, description=description, index=index))
                 index += 1
-        return list(self.project_cache)
+        return list(self.project_list)
