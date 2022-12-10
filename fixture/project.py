@@ -13,6 +13,7 @@ class ProjectHelper:
     def create(self, project):
         wd = self.app.wd
         # init group creation
+        self.return_to_projects_page()
         wd.find_element_by_css_selector("[value='Create New Project']").click()
         # fill group form
         self.fill_project_form(project)
@@ -29,6 +30,7 @@ class ProjectHelper:
 
     def delete_first_project(self):
         wd = self.app.wd
+        self.return_to_projects_page()
         wd.find_element_by_xpath("/html/body/table[3]/tbody/tr[3]/td[1]/a").click()
         wd.find_element_by_css_selector('[value="Delete Project"]').click()
         wd.find_element_by_css_selector('[value="Delete Project"]').click()

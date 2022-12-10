@@ -24,13 +24,14 @@ def app(request, config):
         fixture = Application(browser=browser, config=config)
     return fixture
 
+"""
 @pytest.fixture(scope="session", autouse=True)
 def configure_server(request):
     install_server_configuration(config['ftp']['host'], config['ftp']['username'], config['ftp']['password'])
     def fin():
         restore_server_configuration(config['ftp']['host'], config['ftp']['username'], config['ftp']['password'])
     request.addfinalizer(fin)
-
+"""
 
 def install_server_configuration(host, username, password):
     with ftputil.FTPHost(host, username, password) as remote:
