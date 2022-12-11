@@ -30,6 +30,8 @@ class Application:
         self.project = ProjectHelper(self)
         self.config = config
         self.base_url = config['web']['baseUrl']
+        self.username = config['webadmin']['username']
+        self.password = config['webadmin']['password']
 
     def open_home_page(self):
         wd = self.wd
