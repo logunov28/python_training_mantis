@@ -12,6 +12,6 @@ def test_add_project(app):
     new_projects = app.soap.get_projects_list()
     assert len(old_projects)+1 == len(new_projects)
     old_projects.append(project)
-    assert str(old_projects) == str(new_projects)
-    #assert sorted(old_projects, key=Project.id_or_max) == sorted(new_projects, key=Project.id_or_max)
+    #assert str(old_projects) == str(new_projects)
+    assert sorted(old_projects, key=Project.id_or_max) == sorted(new_projects, key=Project.id_or_max)
 
