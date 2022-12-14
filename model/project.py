@@ -13,13 +13,10 @@ class Project:
         return "%s, %s, %s, %s, %s" % (self.name, self.status, self.inherit, self.view_status, self.description)
 
 
-"""
     def __eq__(self, other):
-        return (self.id is None or other.id is None or self.id == other.id) and self.name == other.name
+        return (self.name is None or other.name is None or self.name == other.name) \
+               and (self.status is None or other.status is None or self.status == other.status) \
+               and (self.view_status is None or other.view_status is None or self.view_status == other.view_status) \
+               and (self.description is None or other.description is None or self.description == other.description)\
+               and (self.index is None or other.index is None or self.index == other.index)
 
-    def id_or_max(self):
-        if self.id:
-            return int(self.id)
-        else:
-            return maxsize
-"""
