@@ -2,7 +2,7 @@ from model.project import Project
 
 def test_add_project(app):
     app.open_home_page()
-    app.session.login("administrator", "root")
+    app.session.login(app.username, app.password)
     old_projects = app.soap.get_projects_list()
     project = Project(name="First_project", status='development', view_status='public', description='text')
     app.project.create(project)
