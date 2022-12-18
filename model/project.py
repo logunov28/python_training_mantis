@@ -1,13 +1,15 @@
+from sys import maxsize
 
 class Project:
 
-    def __init__(self, name=None, status='development', inherit=True, view_status='public', description=None, index=None):
+    def __init__(self, name=None, status='development', inherit=True, view_status='public', description=None, index=None, id=None):
         self.name = name
         self.status = status
         self.inherit = inherit
         self.view_status = view_status
         self.description = description
         self.index = index
+        self.id = id
 
     def __repr__(self):
         return "%s, %s, %s, %s, %s" % (self.name, self.status, self.inherit, self.view_status, self.description)
@@ -20,3 +22,8 @@ class Project:
                and (self.description is None or other.description is None or self.description == other.description)\
                and (self.index is None or other.index is None or self.index == other.index)
 
+    def id_or_max(self):
+        if self.id:
+            return int(self.id)
+        else:
+            return maxsize

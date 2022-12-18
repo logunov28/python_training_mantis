@@ -8,5 +8,5 @@ def test_add_project(app):
     app.project.create(project)
     app.project.return_to_projects_page()
     new_projects = app.soap.get_projects_list()
-    assert sorted(old_projects) == sorted(new_projects)
+    assert sorted(old_projects, key=Project.id_or_max) == sorted(new_projects, key=Project.id_or_max)
 
