@@ -14,4 +14,4 @@ def test_del_project(app):
     new_projects = app.soap.get_projects_list()
     old_projects.remove(project)
     app.session.logout()
-    assert old_projects == new_projects
+    assert sorted(old_projects, key=Project.id_or_max) == sorted(new_projects, key=Project.id_or_max)
